@@ -1,4 +1,4 @@
-package com.ep.jyq.mmphoto;
+package com.ep.jyq.mmphoto.util;
 
 import android.util.SparseArray;
 import android.view.View;

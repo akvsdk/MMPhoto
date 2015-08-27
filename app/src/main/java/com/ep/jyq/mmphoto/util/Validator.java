@@ -1,4 +1,4 @@
-package com.ep.jyq.mmphoto;
+package com.ep.jyq.mmphoto.util;
 
 /**
  * Created by Andy on 2015/6/12

@@ -1,4 +1,4 @@
-package com.ep.jyq.mmphoto;
+package com.ep.jyq.mmphoto.fragment;
 
 import android.app.Activity;
 import android.content.Context;
@@ -18,6 +18,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.ep.jyq.mmphoto.R;
+import com.ep.jyq.mmphoto.bean.ImageInfo;
+import com.ep.jyq.mmphoto.util.JsoupTool;
+import com.ep.jyq.mmphoto.util.Validator;
+import com.ep.jyq.mmphoto.util.ViewHolder;
 import com.mugen.attachers.BaseAttacher;
 
 import java.lang.ref.WeakReference;
@@ -140,18 +145,18 @@ public class PageSectionFragment extends Fragment {
 
             }
 
-            TextView tvt = ViewHolder.get(convertView, R.id.img_title);
-            ImageView iv = ViewHolder.get(convertView, R.id.img);
+            TextView txt = ViewHolder.get(convertView, R.id.img_title);
+            ImageView imgview = ViewHolder.get(convertView, R.id.img);
             final ImageInfo imginfo = imgList.get(position);
             String tv = imginfo.getImgTitle();
             String img = imginfo.getImgUrl();
             if (Validator.isEffective(tv)) {
-                tvt.setText(tv);
+                txt.setText(tv);
             }
             if (Validator.isEffective(img)) {
-                Glide.with(mContext).load(img).into(iv);
+                Glide.with(mContext).load(img).into(imgview);
             }
-            iv.setOnClickListener(new View.OnClickListener() {
+            imgview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Snackbar.make(v, "" + position, Snackbar.LENGTH_SHORT).setAction("确定", null).show();

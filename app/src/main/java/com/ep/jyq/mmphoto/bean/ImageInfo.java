@@ -1,4 +1,4 @@
-package com.ep.jyq.mmphoto;
+package com.ep.jyq.mmphoto.bean;
 
 /**
  * Created by Joy on 2015/8/27.

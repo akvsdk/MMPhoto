@@ -1,4 +1,4 @@
-package com.ep.jyq.mmphoto;
+package com.ep.jyq.mmphoto.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -19,6 +19,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.ep.jyq.mmphoto.fragment.PageSectionFragment;
+import com.ep.jyq.mmphoto.R;
 
 import java.util.ArrayList;
 import java.util.List;

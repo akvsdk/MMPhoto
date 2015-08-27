@@ -1,4 +1,6 @@
-package com.ep.jyq.mmphoto;
+package com.ep.jyq.mmphoto.util;
+
+import com.ep.jyq.mmphoto.bean.ImageInfo;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_wb_auto_black"
+            android:title="Home"/>
+        <item
+            android:id="@+id/nav_messages"
+            android:icon="@drawable/ic_wb_cloudy_black"
+            android:title="Messages"/>
+        <item
+            android:id="@+id/nav_friends"
+            android:icon="@drawable/ic_wb_incandescent_black"
+            android:title="Friends"/>
+        <item
+            android:id="@+id/nav_discussion"
+            android:icon="@drawable/ic_wb_sunny_black"
+            android:title="Discussion"/>
+    </group>
+
+    <item android:title="More  items">
+        <menu>
+            <item
+                android:icon="@drawable/ic_wb_iridescent_black"
+                android:title="item 1"/>
+            <item
+                android:icon="@drawable/ic_star_border_whitee"
+                android:title="item 2"/>
+        </menu>
+    </item>
+
+</menu>

@@ -23,7 +23,7 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:22.2.1'
-     //设计材料
+    //设计材料
     compile 'com.android.support:design:22.2.1'
     //升级版Listview
     compile 'com.android.support:recyclerview-v7:22.2.1'
@@ -34,5 +34,8 @@ dependencies {
     //无限加载
     compile 'com.vinaysshenoy:mugen:1.0.0'
     //解析HTML
+    compile 'com.google.code.gson:gson:2.3.1'
+    //解析Json
     compile files('libs/jsoup-1.7.3.jar')
+    compile files('libs/volly-1.0.11.jar')
 }

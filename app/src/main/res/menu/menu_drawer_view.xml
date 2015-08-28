@@ -6,9 +6,9 @@
             android:icon="@drawable/ic_wb_auto_black"
             android:title="Home"/>
         <item
-            android:id="@+id/nav_messages"
+            android:id="@+id/nav_weather"
             android:icon="@drawable/ic_wb_cloudy_black"
-            android:title="Messages"/>
+            android:title="天气预报"/>
         <item
             android:id="@+id/nav_friends"
             android:icon="@drawable/ic_wb_incandescent_black"

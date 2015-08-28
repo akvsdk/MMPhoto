@@ -3,7 +3,12 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
- <ListView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:layout_margin = "4dp"
+        android:id = "@+id/swipe_container"
+        android:layout_width = "match_parent"
+        android:layout_height = "match_parent">
+    <ListView
      android:id="@+id/listv"
      android:layout_marginTop="10dp"
      android:layout_width="match_parent"
@@ -17,5 +22,5 @@
      android:headerDividersEnabled="false"
      android:scrollbars="none"
      />
-
+</android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

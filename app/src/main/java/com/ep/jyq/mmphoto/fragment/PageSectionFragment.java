@@ -8,6 +8,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,7 @@ public class PageSectionFragment extends Fragment {
     private List<ImageInfo> imgList;
     private List<ImageInfo> tempimgList;
     private int curLoadedPage = 1;
-
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     private static final int REQUEST_FINISHED = 100;
     private static final String KEY_CONTENT = "PageSectionFragment:CategoryId";
@@ -82,12 +83,26 @@ public class PageSectionFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_content, container, false);
         mListView = (ListView) view.findViewById(R.id.listv);
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
+        //设置动画颜色
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
+
 
         adapter = new ListvAdapet();
         mListView.setAdapter(adapter);
-        getImageData(curLoadedPage + 1);
 
-        // getImageData(1);
+        getImageData(1);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                swipeRefreshLayout.setRefreshing(false);
+                getImageData(curLoadedPage + 1);
+                adapter.notifyDataSetChanged();
+            }
+        });
+
+
+    //    getImageData(curLoadedPage + 1);  //加载的内容
 
         return view;
     }

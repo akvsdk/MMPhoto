@@ -1,15 +1,13 @@
 package com.ep.jyq.mmphoto.activity;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -18,10 +16,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.ep.jyq.mmphoto.fragment.PageSectionFragment;
 import com.ep.jyq.mmphoto.R;
+import com.ep.jyq.mmphoto.fragment.PageSectionFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -96,21 +93,25 @@ public class MainActivity extends AppCompatActivity {
     public void setupDrawerContent(NavigationView navigationView) {     //设置自动关闭
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
+            public boolean onNavigationItemSelected(final MenuItem menuItem) {
                 menuItem.setChecked(true);
+                selectDrawerItem(menuItem);
                 mDrawerLayout.closeDrawers();
-
-                Snackbar.make(lay_content, menuItem.getTitle(), Snackbar.LENGTH_LONG).setActionTextColor(Color.parseColor("#ffffff")).setAction("确定", new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                }).show();
 
                 return true;
             }
         });
 
+    }
+
+    private void selectDrawerItem(MenuItem menuItem) {
+        Intent in = new Intent();
+        switch (menuItem.getItemId()){
+            case R.id.nav_weather :
+                in.setClass(MainActivity.this,Wheather.class);
+                startActivity(in);
+                break;
+        }
     }
 
     public void setupViewPager(ViewPager viewPager) {

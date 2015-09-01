@@ -9,9 +9,11 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -24,6 +26,9 @@ import com.ep.jyq.mmphoto.bean.ImageInfo;
 import com.ep.jyq.mmphoto.util.JsoupTool;
 import com.ep.jyq.mmphoto.util.Validator;
 import com.ep.jyq.mmphoto.util.ViewHolder;
+import com.ep.jyq.mmphoto.view.ProgressBar_Modern;
+import com.mugen.Mugen;
+import com.mugen.MugenCallbacks;
 import com.mugen.attachers.BaseAttacher;
 
 import java.lang.ref.WeakReference;
@@ -34,7 +39,7 @@ import java.util.List;
  * Created by Joy on 2015/8/27.
  */
 public class PageSectionFragment extends Fragment {
-
+    private ProgressBar_Modern progressBar_modern;
     BaseAttacher attacher;
     private String mCategoryId;
     private Context mContext;
@@ -85,45 +90,75 @@ public class PageSectionFragment extends Fragment {
         mListView = (ListView) view.findViewById(R.id.listv);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_container);
         //设置动画颜色
+        progressBar_modern = (ProgressBar_Modern) view.findViewById(R.id.progressbar);
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_light, android.R.color.holo_red_light, android.R.color.holo_orange_light, android.R.color.holo_green_light);
 
 
         adapter = new ListvAdapet();
         mListView.setAdapter(adapter);
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+            }
+        });
         getImageData(1);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 swipeRefreshLayout.setRefreshing(false);
-                getImageData(curLoadedPage + 1);
+                getImageData(1);
                 adapter.notifyDataSetChanged();
             }
         });
+        attacher = Mugen.with(mListView, new MugenCallbacks() {
+            @Override
+            public void onLoadMore() {
+                progressBar_modern.setVisibility(View.VISIBLE);
+                getImageData(curLoadedPage + 1);
+                Log.e("Joy", "加载更多哦~！~！~！~");
+                if (progressBar_modern.getVisibility() == View.VISIBLE) {
+                    progressBar_modern.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public boolean isLoading() {
+                return false;
+            }
+
+            @Override
+            public boolean hasLoadedAllItems() {
+
+                return false;
+            }
 
 
-    //    getImageData(curLoadedPage + 1);  //加载的内容
+        }).start();
+        attacher.setLoadMoreOffset(2);
+
+        //    getImageData(curLoadedPage + 1);  //加载的内容
 
         return view;
     }
 
     private void getImageData(int page) {
-        if (Validator.isEffective(mCategoryId)){
+        if (Validator.isEffective(mCategoryId)) {
             final String pageUrl = URL + mCategoryId + "&pager_offset=" + page;
 
-             new Thread(new Runnable() {
-                 @Override
-                 public void run() {
-                     List<ImageInfo> imgList = JsoupTool.getInstance().getAllImages(pageUrl);
-                     if (imgList != null) {
-                         Message msg = new Message();
-                         msg.what = REQUEST_FINISHED;
-                         msg.obj = imgList;
-                         mHandler.sendMessage(msg);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    List<ImageInfo> imgList = JsoupTool.getInstance().getAllImages(pageUrl);
+                    if (imgList != null) {
+                        Message msg = new Message();
+                        msg.what = REQUEST_FINISHED;
+                        msg.obj = imgList;
+                        mHandler.sendMessage(msg);
 
-                     }
-                 }
-             }).start();
+                    }
+                }
+            }).start();
         }
 
     }
@@ -157,14 +192,13 @@ public class PageSectionFragment extends Fragment {
 
             if (convertView == null) {
                 convertView = LayoutInflater.from(mContext).inflate(R.layout.list_item, null);
-
             }
 
             TextView txt = ViewHolder.get(convertView, R.id.img_title);
             ImageView imgview = ViewHolder.get(convertView, R.id.img);
             final ImageInfo imginfo = imgList.get(position);
             String tv = imginfo.getImgTitle();
-            String img = imginfo.getImgUrl();
+            final String img = imginfo.getImgUrl();
             if (Validator.isEffective(tv)) {
                 txt.setText(tv);
             }
@@ -174,7 +208,13 @@ public class PageSectionFragment extends Fragment {
             imgview.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Snackbar.make(v, "" + position, Snackbar.LENGTH_SHORT).setAction("确定", null).show();
+                    Snackbar.make(v, "" + img, Snackbar.LENGTH_SHORT).setAction("确定", new View.OnClickListener() {
+                        public void onClick(View view) {
+                          /*  Intent in = new Intent(getActivity(),ImageActivity.class);
+                            in.putExtra("imgurl",img);
+                            startActivity(in);*/
+                        }
+                    }).show();
 
                 }
             });

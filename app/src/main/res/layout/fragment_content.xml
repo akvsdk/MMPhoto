@@ -1,26 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
     <android.support.v4.widget.SwipeRefreshLayout
-        android:layout_margin = "4dp"
-        android:id = "@+id/swipe_container"
-        android:layout_width = "match_parent"
-        android:layout_height = "match_parent">
-    <ListView
-     android:id="@+id/listv"
-     android:layout_marginTop="10dp"
-     android:layout_width="match_parent"
-     android:layout_height="match_parent"
-     android:layout_marginLeft="16dp"
-     android:layout_marginRight="16dp"
-     android:dividerHeight="18dp"
-     android:fadingEdge="none"
-     android:fastScrollEnabled="false"
-     android:footerDividersEnabled="false"
-     android:headerDividersEnabled="false"
-     android:scrollbars="none"
-     />
-</android.support.v4.widget.SwipeRefreshLayout>
-</LinearLayout>
+        android:id="@+id/swipe_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp">
+
+        <ListView
+            android:id="@+id/listv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="10dp"
+            android:dividerHeight="18dp"
+            android:fadingEdge="none"
+            android:fastScrollEnabled="false"
+            android:footerDividersEnabled="false"
+            android:headerDividersEnabled="false"
+            android:scrollbars="none"
+            />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <com.ep.jyq.mmphoto.view.ProgressBar_Modern
+        android:id="@+id/progressbar"
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:layout_gravity="bottom"
+        android:visibility="gone"/>
+</FrameLayout>

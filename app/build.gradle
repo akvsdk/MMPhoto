@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion 23
     buildToolsVersion "22.0.1"
 
     defaultConfig {
@@ -22,13 +22,14 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:appcompat-v7:22.2.1'
+    compile 'com.android.support:appcompat-v7:23.0.0'
     //设计材料
-    compile 'com.android.support:design:22.2.1'
+    compile 'com.android.support:design:23.0.0'
     //升级版Listview
-    compile 'com.android.support:recyclerview-v7:22.2.1'
+    compile 'com.android.support:recyclerview-v7:+'
     //cardview兼容库
-    compile 'com.android.support:cardview-v7:22.2.1'
+    compile 'com.android.support:cardview-v7:23.0.0'
+
     //图片库
     compile 'com.github.bumptech.glide:glide:3.6.0'
     //无限加载
@@ -36,6 +37,11 @@ dependencies {
     //解析HTML
     compile 'com.google.code.gson:gson:2.3.1'
     //解析Json
+    compile 'com.klinkerapps:sliding-activity:1.1.1'
+    //MD风格的Activity
+    compile 'com.flaviofaria:kenburnsview:1.0.6'
+    //开场引导
+
     compile files('libs/jsoup-1.7.3.jar')
     compile files('libs/volly-1.0.11.jar')
 }

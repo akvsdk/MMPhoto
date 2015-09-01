@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent">
- <com.flaviofaria.kenburnsview.KenBurnsView
-     android:id="@+id/iv_welcome"
-     android:src="@mipmap/bgcolor"
-     android:layout_width="match_parent"
-     android:layout_height="match_parent"/>
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:clipToPadding="false"
+             android:background="#a3e9a4"
+             android:fitsSystemWindows="true"
+    >
+
+    <com.flaviofaria.kenburnsview.KenBurnsView
+        android:id="@+id/iv_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@mipmap/bgcolor"/>
+
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
         android:layout_margin="10dp"
         android:gravity="center"
-        android:layout_gravity="bottom"
         android:text="Copyright@akvsdk"
-        android:textSize="25sp"
         android:textColor="#ffffff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:textSize="25sp"/>
 </FrameLayout>

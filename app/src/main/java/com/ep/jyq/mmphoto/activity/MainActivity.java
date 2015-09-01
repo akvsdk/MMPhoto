@@ -1,6 +1,7 @@
 package com.ep.jyq.mmphoto.activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
@@ -16,6 +17,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.WindowManager;
 
 import com.ep.jyq.mmphoto.R;
 import com.ep.jyq.mmphoto.fragment.PageSectionFragment;
@@ -45,6 +47,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initview();
+        inittitle();
+    }
+
+    private void inittitle() {     // 沉浸式状态栏
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
+
+
     }
 
     private void initview() {
@@ -75,6 +87,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
+
+
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

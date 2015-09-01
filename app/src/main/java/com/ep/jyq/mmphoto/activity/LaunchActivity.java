@@ -1,8 +1,10 @@
 package com.ep.jyq.mmphoto.activity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.WindowManager;
 
 import com.ep.jyq.mmphoto.R;
 import com.flaviofaria.kenburnsview.KenBurnsView;
@@ -31,6 +33,11 @@ public class LaunchActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION);
+        }
 
 
     }
